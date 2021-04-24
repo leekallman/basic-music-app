@@ -5,22 +5,22 @@
 
 ## Roadmap
 
-Authorization Setup
-Server Login Route
-useAuth Hook
-Refresh Token Automatically
-Search
-Song Player
-Lyrics
+1. Authorization Setup
+2. Server Login Route
+3. useAuth Hook
+4. Refresh Token Automatically
+5. Search
+6. Song Player
+7. Lyrics
 
 ## Tools Used
- React.js
- Nodemon
- Express
- Spotify-web-api-node
- React-spotify-web-playback
- React-bootstrap
- axios
- Lyrics-finder
+ react.js\
+ nodemon\
+ express\
+ spotify-web-api-node\
+ react-spotify-web-playback\
+ react-bootstrap\
+ axios\
+ lyrics-finder\
  
  
