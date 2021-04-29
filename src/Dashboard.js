@@ -16,6 +16,7 @@ height:100vh;
 background-size:cover;
 background-image: url(${bg});
 display:grid;
+grid-template-columns: repeat(5, 18%);
 grid-gap:1%;
 padding:1%;
 
@@ -23,6 +24,9 @@ padding:1%;
     border:none;
     border-radius:10px;
     padding: 6px 12px;
+}
+.form-control:focus{
+    box-shadow: 0 0 0 0.2rem rgb(248 190 175 / 80%);
 }
 .lyrics{
     height:60vh;
@@ -34,10 +38,16 @@ padding:1%;
     overflow-y: scroll;
     margin-top: 2vh;
 }
+.node{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100vh;
+    width:100vw;
+}
 `
-
 const Container = styled.div`
-    grid-column: 2/5
+    grid-column: 2/5;
 `
 const spotifyApi = new SpotifyWebApi({
     clientId: "10f55f4a0aa043e5a3983ab8810cd18d",
@@ -98,10 +108,10 @@ export default function Dashboard({code}) {
     }, [search, accessToken])
 
     return (
-        <AppContainer>
+        <AppContainer className="appContainer">
             <Header/>
             <Torus />
-            <Container className="">
+            <Container className="" style={{zIndex: "2"}}>
                 <Form.Control type="search"
                 placeholder="Search Songs/Artists"
                 size="lg"

@@ -1,35 +1,33 @@
-import React, { Component } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './index.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import { MaterialLoader } from 'three';
 
-class Torus extends Component {
-    componentDidMount() {
 
+const Torus = () => {
+    const canvasElement = useRef(null)
+
+    useEffect(() => {
         // Loading
-        // const textureLoader = new THREE.TextureLoader();
-        // const normalTexture = textureLoader.load('/textures/NormalMap.png')
+        const textureLoader = new THREE.TextureLoader();
+        const normalTexture = textureLoader.load('/textures/gold.jpeg')
 
-        // Debug
         const gui = new dat.GUI()
-
         // Canvas
-        const canvas = document.getElementById("canvas")
-        // canvas.width = canvas.clientWidth;
-        // canvas.height = canvas.clientHeight;
+        const canvas = canvasElement.current
 
-        // Scene
         const scene = new THREE.Scene()
 
         // Objects
-        const geometry = new THREE.TorusKnotGeometry(0.6, 0.2, 100, 40, 2, 3);
+        const geometry = new THREE.TorusKnotGeometry(0.9, 0.4, 200, 10, 2, 3);
 
         // Materials
         const material = new THREE.MeshStandardMaterial()
         material.metalness = 0.9
         material.roughness = 0
+        // material.normalMap = normalTexture;
 
         material.color = new THREE.Color(0xffffff)
 
@@ -46,7 +44,7 @@ class Torus extends Component {
         scene.add(pointLight)
 
         //Light 2
-        const pointLight2 = new THREE.PointLight(0x35ffa1, 1)
+        const pointLight2 = new THREE.PointLight(0xFF8F73, 1)
         pointLight2.position.set(-2.10, 1.15, 2.05)
         pointLight2.intensity = 9
         scene.add(pointLight2)
@@ -71,7 +69,7 @@ class Torus extends Component {
         // scene.add(pointLightHelper2)
 
         //Light 3
-        const pointLight3 = new THREE.PointLight(0x8441d9, 1)
+        const pointLight3 = new THREE.PointLight(0x4DAECD, 1)
         pointLight3.position.set(2.10, 1, 3.1)
         pointLight3.intensity = 4
         scene.add(pointLight3)
@@ -91,7 +89,6 @@ class Torus extends Component {
             .onChange(() => {
                 pointLight3.color.set(light3color.color)
             })
-
 
         // const pointLightHelper3 = new THREE.PointLightHelper(pointLight3, 1)
         // scene.add(pointLightHelper3)
@@ -157,13 +154,18 @@ class Torus extends Component {
             window.requestAnimationFrame(tick)
         }
         tick()
-    }
+    }, [])
 
-    render() {
-        return (
-            <div style={{ width: "300px", height: "200px" }} ref={(mount) => { this.mount = mount }} id='canvas'>
-            </div>
-        )
-    }
+    return (
+        <canvas ref={canvasElement} className="node" style={{ zIndex: "1" }} id="0_0" xmlns="http://www.w3.org/1999/xhtml"></canvas>
+    )
 }
+
 export default Torus
+
+
+
+        // <g className="node" transform="translate(210,330)" style={{ zIndex: "1" }}>
+        // <foreignObject x="-8" y="-8" className="node" style={{ zIndex: "1" }}>
+        // </foreignObject>
+        // </g>

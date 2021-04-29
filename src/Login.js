@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from "react-bootstrap"
 import styled from "styled-components";
 import bg from './assets/bg.png'
 import Header from './Header'
@@ -11,13 +10,36 @@ background-size:cover;
 height:100vh;
 background-image: url(${bg});
 
-.btn{
+
+.login{
+    width:100vw;
+    height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.loginBtn{
     background-color:black;
     border:none;
+    color:white;
+    border-radius:10px;
+    padding: 12px 40px;
+    text-decoration:none;
 }
-.btn:hover{
+.loginBtn h2{
+    font-weight:400;
+    font-size:24px;
+    margin:0;
+}
+.loginBtn:hover{
     background-color:#343434;
+    outline:none;
 }
+.loginBtn:focus{
+    box-shadow: 0 0 0 0.2rem rgb(248 190 175 / 80%);
+}
+
 `
 
 export default function Login() {
@@ -25,9 +47,7 @@ export default function Login() {
         <AppContainer>
         <Header />
         <div className="login">
-            <Container className="d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                <a className="btn btn-success btn-lg" href={AUTH_URL}>Login with Spotify</a>
-            </Container>
+            <a className="loginBtn" href={AUTH_URL}><h2>Login with Spotify</h2></a>
         </div>
         </AppContainer>
     )

@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SpotifyPlayer from "react-spotify-web-playback"
 
-// const PlayerComponent = styled.div`
-// width:100vw;
-// height:10vh;
-// `
-
-
-
-
 export default function Player({ accessToken, trackUri }) {
     const [play, setPlay] = useState(false)
 
@@ -32,7 +24,7 @@ export default function Player({ accessToken, trackUri }) {
         loaderColor: 'black',
         loaderSize: '50px',
         sliderColor: 'yellow',
-        sliderTrackBorderRadius: 3,
+        sliderTrackBorderRadius: 5,
         sliderHeight:'5px',
         sliderTrackColor:'#ffffff',
         trackArtistColor: '#343434',
