@@ -1,11 +1,44 @@
 import { useState, useEffect } from 'react'
 import useAuth from './useAuth';
-import { Container, Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
+import styled from "styled-components";
 import SpotifyWebApi from 'spotify-web-api-node'
 import TrackSearchResult from './TrackSearchResult'
 import Player from './Player'
 import axios from 'axios';
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Torus from './Torus'
+import bg from './assets/bg.png'
 
+const AppContainer = styled.div`
+height:100vh;
+background-size:cover;
+background-image: url(${bg});
+display:grid;
+grid-gap:1%;
+padding:1%;
+
+.form-control{
+    border:none;
+    border-radius:10px;
+    padding: 6px 12px;
+}
+.lyrics{
+    height:60vh;
+    overflow-y: scroll;
+}
+
+.searchResults{
+    height:60vh;
+    overflow-y: scroll;
+    margin-top: 2vh;
+}
+`
+
+const Container = styled.div`
+    grid-column: 2/5
+`
 const spotifyApi = new SpotifyWebApi({
     clientId: "10f55f4a0aa043e5a3983ab8810cd18d",
 })
@@ -65,31 +98,37 @@ export default function Dashboard({code}) {
     }, [search, accessToken])
 
     return (
-        <Container className="d-flex flex-column py-2" style={{height:"100vh"}}>
-            <Form.Control type="search"
-            placeholder="Search Songs/Artists"
-            value={search} 
-            onChange={e => setSearch(e.target.value)} 
-            />
-            <div className="flex-grow-1 my-2" style={{ overflowY: "auto"}}>
-            Songs
-            </div>
-            <div>
-                {searchResults.map(track => (
-                    <TrackSearchResult 
-                    track={track} 
-                    key={track.uri} 
-                    chooseTrack={chooseTrack}
-                    />
-                ))}
-                {searchResults.length === 0 && (
-                <div className="text-center" style={{ whiteSpace: "pre"}}>
-                {lyrics}
+        <AppContainer>
+            <Header/>
+            <Torus />
+            <Container className="">
+                <Form.Control type="search"
+                placeholder="Search Songs/Artists"
+                size="lg"
+                aria-label="Search songs/artists"
+                value={search} 
+                onChange={e => setSearch(e.target.value)}
+                style={{backgroundColor:"black", 
+                color:"white",
+            height:"60px"}} 
+                />
+                <div className="searchResults">
+                    {searchResults.map(track => (
+                        <TrackSearchResult 
+                        track={track} 
+                        key={track.uri} 
+                        chooseTrack={chooseTrack}
+                        />
+                    ))}
+                    {searchResults.length === 0 && (
+                    <div className="lyrics" style={{ whiteSpace: "pre"}}>
+                    {lyrics}
+                    </div>
+                    )}
                 </div>
-                )}
-            </div>
-            <div><Player accessToken={accessToken} trackUri={playingTrack?.uri} /></div>
-        </Container>
-        
+                <div><Player accessToken={accessToken} trackUri={playingTrack?.uri} /></div>
+            </Container>
+            <Sidebar />
+        </AppContainer>
     )
 }
