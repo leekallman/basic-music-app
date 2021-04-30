@@ -6,9 +6,13 @@ const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=10f55f4a0aa04
 
 
 const AppContainer = styled.div`
-background-size:cover;
 height:100vh;
+background-size:cover;
 background-image: url(${bg});
+display:grid;
+grid-template-columns: repeat(5, 19%);
+grid-gap:1%;
+padding:1%;
 
 
 .login{
@@ -39,7 +43,6 @@ background-image: url(${bg});
 .loginBtn:focus{
     box-shadow: 0 0 0 0.2rem rgb(248 190 175 / 80%);
 }
-
 `
 
 export default function Login() {

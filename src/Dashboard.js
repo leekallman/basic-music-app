@@ -8,6 +8,7 @@ import Player from './Player'
 import axios from 'axios';
 import Header from './Header'
 import Sidebar from './Sidebar'
+import Playlists from './Playlists'
 import Torus from './Torus'
 import bg from './assets/bg.png'
 
@@ -16,9 +17,10 @@ height:100vh;
 background-size:cover;
 background-image: url(${bg});
 display:grid;
-grid-template-columns: repeat(5, 18%);
+grid-template-columns: repeat(5, 19%);
 grid-gap:1%;
 padding:1%;
+position:relative;
 
 .form-control{
     border:none;
@@ -28,9 +30,15 @@ padding:1%;
 .form-control:focus{
     box-shadow: 0 0 0 0.2rem rgb(248 190 175 / 80%);
 }
+
+input::placeholder {
+    color:white;
+}
+
 .lyrics{
     height:60vh;
     overflow-y: scroll;
+    padding-left:1vw;
 }
 
 .searchResults{
@@ -39,11 +47,12 @@ padding:1%;
     margin-top: 2vh;
 }
 .node{
-    position:fixed;
+    position:absolute;
     top:0;
-    left:0;
-    height:100vh;
-    width:100vw;
+}
+
+.closed{
+    height: 60px;
 }
 `
 const Container = styled.div`
@@ -65,6 +74,7 @@ export default function Dashboard({code}) {
         setSearch('')
         setLyrics('')
     }
+
     useEffect(() =>{
         if(!playingTrack) return
 
@@ -111,7 +121,8 @@ export default function Dashboard({code}) {
         <AppContainer className="appContainer">
             <Header/>
             <Torus />
-            <Container className="" style={{zIndex: "2"}}>
+            <Playlists accessToken={accessToken}/>
+            <Container className="" style={{zIndex: "1"}}>
                 <Form.Control type="search"
                 placeholder="Search Songs/Artists"
                 size="lg"

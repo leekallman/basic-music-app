@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import SpotifyPlayer from "react-spotify-web-playback"
+import styled from "styled-components";
+
+const PlayerComponent = styled.div`
+._SliderRSWP {
+    margin-bottom:20px;
+}
+`
 
 export default function Player({ accessToken, trackUri }) {
     const [play, setPlay] = useState(false)
@@ -9,7 +16,9 @@ export default function Player({ accessToken, trackUri }) {
 
     if(!accessToken) return null
 
-    return <SpotifyPlayer 
+    return (
+        <PlayerComponent>
+        <SpotifyPlayer 
     token={accessToken}
     showSaveIcon
     callback={state => {
@@ -19,7 +28,7 @@ export default function Player({ accessToken, trackUri }) {
     uris={trackUri ? [trackUri] : []}
     styles={{
         activeColor: '#fff',
-        color:'black',
+        color:'yellow',
         bgColor: 'none',
         loaderColor: 'black',
         loaderSize: '50px',
@@ -27,7 +36,12 @@ export default function Player({ accessToken, trackUri }) {
         sliderTrackBorderRadius: 5,
         sliderHeight:'5px',
         sliderTrackColor:'#ffffff',
-        trackArtistColor: '#343434',
+        trackNameColor:'yellow',
+        trackArtistColor: 'yellow',
     }}
     />
+        </PlayerComponent>
+    )
+    
+    
 }

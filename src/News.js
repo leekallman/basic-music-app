@@ -29,10 +29,13 @@ hr{
     display:none;
 }
 `
-export default function News() {
+export default function News({ info, setInfo }) {
     const [news, setNews] = useState(true)
     const newsHandler = () => {
         setNews(!news)
+        if (info === false) {
+            setInfo(true)
+        }
     }
 
 
@@ -40,7 +43,7 @@ export default function News() {
         <NewsComponent className={news ? 'closed' : 'open'}>
             <button onClick={newsHandler}>
                 <h2>News</h2>
-                <h2>+</h2>
+                <h2>{news ? '+' : '-'}</h2>
             </button>
             <div className={news ? 'hide' : 'display'}>
                 <hr />

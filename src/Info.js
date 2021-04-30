@@ -7,6 +7,8 @@ border-radius:10px;
 color:white;
 padding:5%;
 margin-bottom:2vh;
+height:60vh;
+overflow-y: auto;
 
 h2{
     font-size:28px;
@@ -23,7 +25,7 @@ button{
     justify-content:space-between;
 }
 p{
-    font-size:16px;
+    font-size:18px;
 }
 
 a{
@@ -38,23 +40,20 @@ hr{
 }
 `
 
-export default function Info() {
-    const [info, setInfo] = useState(true)
-    const infoHandler = () => {
-        setInfo(!info)
-    }
+export default function Info({info, setInfo, infoHandler}) {
+    
     return (
         <InfoComponent className={info ? 'closed' : 'open'}>
             <button onClick={infoHandler}>
                 <h2>Info</h2>
-                <h2>+</h2>
+                <h2>{info ? '+' : '-'}</h2>
             </button>
             <div className={info ? 'hide' : 'display'}>
             <hr/>
-                <p>This is a basic music App built using <a href="https://developer.spotify.com/documentation/web-api/" title="link to spotify documentation">Spotify Web API</a>, <a href="https://www.npmjs.com/package/axios" title="link to axios npm">axios</a> (promise based HTTP client for the browser and node.js), <a href="https://www.npmjs.com/package/react-spotify-web-playback" title="link to react-spotify-web-playback npm">react-spotify-web-playback</a> and <a href="https://threejs.org/" title="link to three.js">three.js</a>(JavaScript 3D library).</p>
+                <p>This is a basic music App built using <a href="https://developer.spotify.com/documentation/web-api/" title="link to spotify documentation">Spotify Web API</a>, <a href="https://www.npmjs.com/package/axios" title="link to axios npm">axios</a> (promise based HTTP client for the browser and node.js), <a href="https://www.npmjs.com/package/react-spotify-web-playback" title="link to react-spotify-web-playback npm">react-spotify-web-playback</a>, <a href="https://www.npmjs.com/package/lyrics-finder">lyrics-finder</a> and <a href="https://threejs.org/" title="link to three.js">three.js</a>(JavaScript 3D library).</p>
                 <p>Login with your Spotify Premium account. Search for your favorite songs/artists and play music right in your browser. As a cherry on the top, song lyrics are provided.</p>
                 <p>It is a Hyper Island student project with the aim to build an App using at least 2 API:s.</p>
-                <p><a href="https://github.com/leekallman/basic-music-app"> --> Github repo</a></p>
+                <p><a href="https://github.com/leekallman/basic-music-app"> Github repo</a></p>
             </div>
         </InfoComponent>
     )

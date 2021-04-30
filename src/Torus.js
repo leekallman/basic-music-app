@@ -23,6 +23,8 @@ const Torus = () => {
         // Objects
         const geometry = new THREE.TorusKnotGeometry(0.9, 0.4, 200, 10, 2, 3);
 
+
+
         // Materials
         const material = new THREE.MeshStandardMaterial()
         material.metalness = 0.9
